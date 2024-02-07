@@ -3551,7 +3551,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "symfony/validator": 20,
       "doctrine/annotations": 20,
