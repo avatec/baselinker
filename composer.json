@@ -1,6 +1,6 @@
 {
-    "name": "solizion/php-baselinker",
-    "description": "php-baselinker is a PHP library for accessing the BaseLinker service.",
+    "name": "avatec/php-baselinker",
+    "description": "baselinker is a PHP library for accessing the BaseLinker service.",
     "minimum-stability": "dev",
     "authors": [
         {
