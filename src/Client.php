@@ -2,6 +2,8 @@
 
 namespace BaselinkerClient;
 
+use BaselinkerClient\Journal\GetJournalListParameters;
+use BaselinkerClient\Journal\GetJournalListResponse;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
@@ -27,6 +29,19 @@ class Client
         $this->apiKey = $apiKey;
         $this->client = HttpClient::create();
     }
+    /**
+     * @throws TransportExceptionInterface
+     * @throws Exception
+     */
+    public function getJournalList(GetJournalListParameters $parameters): GetJournalListResponse
+    {
+        $parameters->validate();
+        $paramData = $parameters->toRequest();
+
+        return new GetJournalListResponse(
+            $this->doRequest($paramData, 'getJournalList')
+        );
+    }
 
     public function setClient(HttpClientInterface $client)
     {
@@ -36,7 +51,7 @@ class Client
     /**
      * @throws TransportExceptionInterface
      */
-    protected function doRequest(array $paramData, string $method): array
+    public function doRequest(array $paramData, string $method): array
     {
         $request = $this->client->request(
             'POST',
